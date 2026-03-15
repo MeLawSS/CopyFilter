@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <SignMode>TestSign</SignMode>
+    <DbgengKernelMachineName>Target</DbgengKernelMachineName>
+    <RemoveDriver>True</RemoveDriver>
+    <InstallMode>None</InstallMode>
+    <HardwareIdString>Root\NullFilter</HardwareIdString>
+    <CommandLine>cd C:\DriverTest\Drivers &amp;&amp; sc stop CopyFilter &amp; sc delete CopyFilter &amp; fltmc unload CopyFilter &amp; pnputil /add-driver CopyFilter.inf /install /force &amp; sc start CopyFilter</CommandLine>
+    <ScriptPath>C:\Program Files (x86)\Windows Kits\10\Testing\Tests\Utilities\DefaultDriverPackageInstallationTask.dll</ScriptPath>
+    <DbgengRemoteMachineName>Target</DbgengRemoteMachineName>
+    <DeployFiles />
+    <ScriptName>Microsoft.DriverKit.DefaultDriverPackageInstallationClass.PerformDefaultDriverPackageInstallation</ScriptName>
+    <ScriptDeviceQuery />
+    <EnableVerifier>True</EnableVerifier>
+    <AllDrivers>False</AllDrivers>
+    <VerifyProjectOutput>True</VerifyProjectOutput>
+    <VerifyDrivers />
+    <VerifyFlags>133563</VerifyFlags>
+    <FrameWorkInteraction>DvOn</FrameWorkInteraction>
+    <KmdfServiceNamesToVerify>CopyFilter</KmdfServiceNamesToVerify>
+    <EnableVerbose>true</EnableVerbose>
+    <TestCertificate>
+    </TestCertificate>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <DbgengKernelMachineName>Target</DbgengKernelMachineName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <DbgengKernelMachineName>Target</DbgengKernelMachineName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DbgengKernelMachineName>Target</DbgengKernelMachineName>
+  </PropertyGroup>
+</Project>
