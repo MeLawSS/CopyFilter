@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Minifilter driver install/update script
 .DESCRIPTION
