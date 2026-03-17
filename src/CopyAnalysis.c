@@ -152,7 +152,7 @@ static void ClearExpiredNode(LONGLONG nCurTimeStamp)
     ExFreePoolWithTag(pKeys, PoolTag_CopyAnalysis);
 }
 
-STORAGE_BUS_TYPE GetBusType(IN PFLT_VOLUME pVolume, IN PDEVICE_OBJECT pDevObj) {
+static STORAGE_BUS_TYPE GetBusType(IN PFLT_VOLUME pVolume, IN PDEVICE_OBJECT pDevObj) {
     Volume_Info volInfo = { 0 };
     
     if (!FindVolumeInfo(pVolume, &volInfo)) {
@@ -244,7 +244,7 @@ VOID UninitCopyAnalysis()
 BOOLEAN PreReadCache(_In_ PFLT_CALLBACK_DATA pData, _In_ PCFLT_RELATED_OBJECTS pFltObjects)
 {
 	BOOLEAN bRet = FALSE;
-    LARGE_INTEGER curTime;
+    LARGE_INTEGER curTime = { 0 };
     Copy_Analysis_Data struData = { 0 };
 
 	do

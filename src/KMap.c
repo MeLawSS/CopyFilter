@@ -245,7 +245,6 @@ KMapiEnumCore(
 /* --------------------------------------------------------------------------
  * 加锁 / 解锁辅助
  * -------------------------------------------------------------------------- */
-_Success_(return)
 static VOID
 KMapiAcquire(
     _In_  PKMAP  Map,
@@ -260,7 +259,6 @@ KMapiAcquire(
     }
 }
 
-_Success_(return)
 static VOID
 KMapiRelease(
     _In_ PKMAP Map,
