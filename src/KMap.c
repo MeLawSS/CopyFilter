@@ -94,6 +94,7 @@ KMapiFindEntry(
  *   Update = TRUE  → overwrite the value if the key already exists (insert-or-update)
  *   UpdateOnly     → return FALSE if the key does not exist (update-only)
  */
+_Success_(return)
 static BOOLEAN
 KMapiInsertCore(
     _In_      PKMAP      Map,
@@ -147,6 +148,7 @@ KMapiInsertCore(
 }
 
 /* 核心删除逻辑（不持锁） */
+_Success_(return)
 static BOOLEAN
 KMapiRemoveCore(
     _In_      PKMAP      Map,
@@ -174,6 +176,7 @@ KMapiRemoveCore(
 }
 
 /* 核心查找逻辑（不持锁） */
+_Success_(return)
 static BOOLEAN
 KMapiFindCore(
     _In_      PKMAP      Map,
@@ -242,7 +245,7 @@ KMapiEnumCore(
 /* --------------------------------------------------------------------------
  * 加锁 / 解锁辅助
  * -------------------------------------------------------------------------- */
-
+_Success_(return)
 static VOID
 KMapiAcquire(
     _In_  PKMAP  Map,
@@ -257,6 +260,7 @@ KMapiAcquire(
     }
 }
 
+_Success_(return)
 static VOID
 KMapiRelease(
     _In_ PKMAP Map,

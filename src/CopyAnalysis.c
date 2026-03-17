@@ -333,8 +333,8 @@ BOOLEAN PreWriteMatch(_In_ PFLT_CALLBACK_DATA pData, _In_ PCFLT_RELATED_OBJECTS 
 
         FillFileProps(pData, pFltObjects, &struData.dstProps);
         
-        KernOutputInfo("Copy matched successfully. srcFilePath: %s dstFilePath: %s srcBusType: %d dstBusType: %d MatchedBufferAddr: 0x%p TimeStamp: %llu",
-            struData.srcProps.filePath, struData.dstProps.filePath, struData.srcProps.phyDevBusType, struData.dstProps.phyDevBusType, struData.bufferAddr, struData.timeStamp);
+        KernOutputInfo("file-copy recognized. srcFilePath: %s dstFilePath: %s srcFileSystem: %d srcDeviceType: %d srcBusType: %d dstFileSystem: %d dstDeviceType: %d dstBusType: %d MatchedBufferAddr: 0x%p TimeStamp: %llu",
+            struData.srcProps.filePath, struData.dstProps.filePath, struData.srcProps.fileSystemType, struData.srcProps.deviceType, struData.srcProps.phyDevBusType, struData.dstProps.fileSystemType, struData.dstProps.deviceType, struData.dstProps.phyDevBusType, struData.bufferAddr, struData.timeStamp);
 
         if (!KMapRemove(g_mapCopyAnalysis, &struData.bufferAddr, NULL)) {
             KernOutputError("fail to remove node with key %p", struData.bufferAddr);

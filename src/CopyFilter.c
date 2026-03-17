@@ -61,6 +61,11 @@ CopyPreWrite (
     _Flt_CompletionContext_Outptr_ PVOID *CompletionContext
     );
 
+VOID CopyInstanceTeardownCallback(
+    _In_ PCFLT_RELATED_OBJECTS FltObjects,
+    _In_ FLT_INSTANCE_TEARDOWN_FLAGS Reason
+);
+
 //
 //  Structure that contains all the global data structures
 //  used throughout NullFilter.
@@ -230,6 +235,18 @@ Return Value:
     FltUnregisterFilter( CopyFilterData.FilterHandle );
 
     return STATUS_SUCCESS;
+}
+
+VOID CopyInstanceTeardownCallback(
+    _In_ PCFLT_RELATED_OBJECTS FltObjects,
+    _In_ FLT_INSTANCE_TEARDOWN_FLAGS Reason
+)
+{
+    UNREFERENCED_PARAMETER(Reason);
+
+    if (!RemoveVolumeInfo(FltObjects->Volume)) {
+        KernOutputError("RemoveVolumeInfo() failed! pVolume: 0x%p", FltObjects->Volume);
+    }
 }
 
 

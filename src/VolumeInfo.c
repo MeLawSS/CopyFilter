@@ -20,9 +20,10 @@ static BOOLEAN EqualVolume(const VOID* StoredKey, const VOID* LookupKey)
     return *(const ULONGLONG*)StoredKey == *(const ULONGLONG*)LookupKey;
 }
 
+_Success_(return)
 static BOOLEAN QueryVolumeStorageBusType(
-    __in PDEVICE_OBJECT DeviceObject,
-    __out STORAGE_BUS_TYPE* BusType
+    _In_ PDEVICE_OBJECT DeviceObject,
+    _Out_  STORAGE_BUS_TYPE* BusType
 )
 {
     NTSTATUS status;
@@ -77,8 +78,13 @@ static BOOLEAN QueryVolumeStorageBusType(
         status = IoCallDriver(DeviceObject, irp);
         if (status == STATUS_PENDING)
         {
-            KeWaitForSingleObject(&event, Executive, KernelMode, FALSE, NULL);
-            status = ioStatusBlock.Status;
+            if (NT_SUCCESS(KeWaitForSingleObject(&event, Executive, KernelMode, FALSE, NULL))) {
+                status = ioStatusBlock.Status;
+            } else {
+                KernOutputError("KeWaitForSingleObject() failed!");
+				status = STATUS_UNSUCCESSFUL;
+            }
+            
         }
 
         if (NT_SUCCESS(status))
